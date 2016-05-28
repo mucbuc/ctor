@@ -1,0 +1,8 @@
+{
+	"import": [
+		"lib/ctor/def.json"
+	],
+	"sources": [
+		"src/main.cpp"
+	]
+}
