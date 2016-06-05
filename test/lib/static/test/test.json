@@ -1,6 +1,5 @@
 {
-	"import": [
-		"lib/ctor/def.json",
+	"import":[
 		"lib/static/def.json"
 	],
 	"sources": [
