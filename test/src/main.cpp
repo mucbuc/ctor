@@ -17,20 +17,46 @@
 
 using namespace std;
 
+#define LOGFN std::cout << __PRETTY_FUNCTION__ << (void*) this << std::endl;
+
 struct agregate
 {
-    agregate(const agregate & c) : m_first( c.m_first), m_second( c.m_second )
+    agregate(int first, double second)
+    : m_first( first )
+    , m_second( second )
     {
-            std::cout << __PRETTY_FUNCTION__ << std::endl;
+        LOGFN
+        ++ctor_counter;
     }
-    agregate(int i, double j) : m_first(i), m_second(j)
+    
+    agregate(const agregate & c)
+    : m_first( c.m_first )
+    , m_second( c.m_second )
     {
-        std::cout << __PRETTY_FUNCTION__ << std::endl;
+        LOGFN
+        ++ctor_counter;
     }
-  
+    
+    agregate(agregate && c)
+    : m_first( c.m_first )
+    , m_second( c.m_second )
+    {
+        LOGFN
+        ++ctor_counter;
+    }
+    
+    ~agregate()
+    {
+        LOGFN
+    }
+    
     int m_first;
-    double m_second; 
+    double m_second;
+    
+    static unsigned ctor_counter;
 };
+
+unsigned agregate::ctor_counter( 0 );
 
 void default_ctor_test();
 void test_2_args_with_2_vars();
@@ -71,9 +97,10 @@ void test_2_args_with_2_vars()
     table["radius"] = "200.3";
     
     agregate c( a.build( table ) );
-    
+
     ASSERT( c.m_first == 8 )(c.m_first);
-    ASSERT( c.m_second && c.m_second == 200.3 );
- 
+    ASSERT( c.m_second && c.m_second == 200.3 )( c.m_second );
+    ASSERT( agregate::ctor_counter == 1 );
+
     FOOTER;
 }
