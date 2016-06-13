@@ -28,7 +28,8 @@ namespace om636
 	    using typename base_type::map_type;
 	    typedef std::array< std::string, N > array_type;
 	    typedef V arguments_type;
-	    
+        
+        builder_impl() = delete;
 	    builder_impl( arguments_type, array_type );
 	    
 	    product_type build(const map_type & m) const override;
@@ -49,13 +50,20 @@ namespace om636
 	    typedef builder< T, U > base_type;
 	    using typename base_type::product_type;
 	    using typename base_type::map_type;
+
+        typedef std::array< std::string, 0 > array_type;
 	    typedef V arguments_type;
 	    
-	    builder_impl();
+	    builder_impl() = delete;
+        builder_impl( arguments_type args, array_type );
 	    
 	    product_type build(const map_type & m) const override;
 	    
 	private:
+        
+        template<int ... M>
+        product_type create(const arguments_type &, ctor_private::seq<M ...>) const;
+
 	    arguments_type m_args;
 	};
 }
