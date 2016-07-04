@@ -77,7 +77,7 @@ void default_ctor_test()
    typedef map<string, string> map_type;
       
    map_type table;
-   ctor< product_type, map_type > b;
+    ctor< product_type, map_type, std::tuple< int > > b;
    b.build(table); 
 
    FOOTER;
@@ -90,7 +90,7 @@ void test_2_args_with_2_vars()
     typedef agregate product_type;
     typedef map<string, string> map_type;
     
-    ctor< product_type, map_type, int, double > a( make_tuple(0, 0), "index", "radius" );
+    ctor< product_type, map_type, std::tuple<int, double> > a( make_tuple(0, 0), "index", "radius" );
     
     map_type table;
     table["index"] = "8";
