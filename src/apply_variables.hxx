@@ -16,6 +16,6 @@ namespace om636
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     template<class T, class U, class V> 
-    void apply_variables( T & args, const U & vars, const V & map, int_to_type<0> )
+    void apply_variables( T &, const U &, const V &, int_to_type<0> )
     {}
 }
