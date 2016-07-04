@@ -38,7 +38,7 @@ namespace om636
         template<int ... M>
         product_type create(const arguments_type &, ctor_private::seq<M ...>) const;
         
-        arguments_type m_args;
+        const arguments_type m_args;
         array_type m_vars;
     };
 
@@ -60,7 +60,7 @@ namespace om636
         
         template<int ... M>
         product_type create(const arguments_type &, ctor_private::seq<M ...>) const;
-	    arguments_type m_args;
+	    const arguments_type m_args;
 	};
 }
 
