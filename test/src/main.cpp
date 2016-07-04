@@ -17,15 +17,12 @@
 
 using namespace std;
 
-#define LOGFN std::cout << __PRETTY_FUNCTION__ << (void*) this << std::endl;
-
 struct agregate
 {
     agregate(int first, double second)
     : m_first( first )
     , m_second( second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
@@ -33,7 +30,6 @@ struct agregate
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
@@ -41,14 +37,11 @@ struct agregate
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
     ~agregate()
-    {
-        LOGFN
-    }
+    {}
     
     int m_first;
     double m_second;
