@@ -28,7 +28,7 @@ namespace om636
         template<class ... W>
         ctor<T, U> overridenBy(W ... vars)
         {
-            return ctor<T, U>(m_args, vars ... );
+            return ctor<T, U>( m_args, vars ... );
         }
         
     private:
@@ -41,10 +41,11 @@ namespace om636
         typedef T product_type;
         typedef U map_type;
 
-        template<class V>
-        static partial_ctor<T, U, V> defaultedWith(V args)
+        template<class ... V>
+        static partial_ctor<T, U, std::tuple<V ... > > defaultedWith(V ... args)
         {
-            return partial_ctor<T, U, V>(args);
+            typedef std::tuple<V ... > tuple_type;
+            return partial_ctor<T, U, tuple_type >{ tuple_type{ args ... } };
         }
         
         ctor();
