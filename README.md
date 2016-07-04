@@ -1,6 +1,9 @@
 # ctor
 builder 
 
+##
+create/constructor helper
+
 example
 ```
 ctor< product_type, map_type, int, double > a( make_tuple(0, 0), "index", "radius" );

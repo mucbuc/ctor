@@ -17,15 +17,12 @@
 
 using namespace std;
 
-#define LOGFN std::cout << __PRETTY_FUNCTION__ << (void*) this << std::endl;
-
 struct agregate
 {
     agregate(int first, double second)
     : m_first( first )
     , m_second( second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
@@ -33,7 +30,6 @@ struct agregate
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
@@ -41,14 +37,11 @@ struct agregate
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
-        LOGFN
         ++ctor_counter;
     }
     
     ~agregate()
-    {
-        LOGFN
-    }
+    {}
     
     int m_first;
     double m_second;
@@ -70,17 +63,17 @@ int main(int argc, const char * argv[]) {
 
 void default_ctor_test()
 {
-   using namespace std;
-   using namespace om636;
+    using namespace std;
+    using namespace om636;
    
-   typedef int product_type;
-   typedef map<string, string> map_type;
+    typedef int product_type;
+    typedef map<string, string> map_type;
       
-   map_type table;
-   ctor< product_type, map_type > b;
-   b.build(table); 
+    map_type table;
+    auto b( ctor< product_type, map_type >::defaultedWith( int( 0 ) ) );
+    b.build(table);
 
-   FOOTER;
+    FOOTER;
 }
 
 void test_2_args_with_2_vars()
@@ -90,7 +83,9 @@ void test_2_args_with_2_vars()
     typedef agregate product_type;
     typedef map<string, string> map_type;
     
-    ctor< product_type, map_type, int, double > a( make_tuple(0, 0), "index", "radius" );
+    auto a( ctor< product_type, map_type >
+           ::defaultedWith( int(0), double(0) )
+           .overridenBy( "index", "radius" ) );
     
     map_type table;
     table["index"] = "8";
