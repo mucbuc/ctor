@@ -12,7 +12,7 @@ namespace om636
 	struct builder_impl;
 
     // interface.h
-	template<class, class, class ...>
+	template<class, class, class>
     struct ctor;
     
 }	// om636

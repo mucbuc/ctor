@@ -8,24 +8,24 @@
 
 namespace om636
 {
-    template<class T, class U, class ... V>
+    template<class T, class U, class V>
     struct ctor
     {
         typedef T product_type;
         typedef U map_type;
-        typedef std::tuple<V ... > arguments_type;
-        
+        typedef V arguments_type;
+
         ctor();
         
-        template<typename ... W>
-        ctor( arguments_type, W ...);
-
+        template<class ... W>
+        ctor( arguments_type, W ... );
+        
         product_type build(const map_type &);
     
     private:        
         std::unique_ptr< builder<product_type, map_type> > m_impl;
     };
-}	// om636
+}   // om636
 
 #include "interface.hxx"
 

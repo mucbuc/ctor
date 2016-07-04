@@ -101,6 +101,5 @@ void test_2_args_with_2_vars()
     ASSERT( c.m_first == 8 )(c.m_first);
     ASSERT( c.m_second && c.m_second == 200.3 )( c.m_second );
     ASSERT( agregate::ctor_counter == 1 );
-
     FOOTER;
 }
