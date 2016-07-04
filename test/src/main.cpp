@@ -63,17 +63,17 @@ int main(int argc, const char * argv[]) {
 
 void default_ctor_test()
 {
-   using namespace std;
-   using namespace om636;
+    using namespace std;
+    using namespace om636;
    
-   typedef int product_type;
-   typedef map<string, string> map_type;
+    typedef int product_type;
+    typedef map<string, string> map_type;
       
-   map_type table;
-    ctor< product_type, map_type, std::tuple< int > > b;
-   b.build(table); 
+    map_type table;
+    ctor< product_type, map_type > b( std::tuple< int >( 0 ) );
+    b.build(table);
 
-   FOOTER;
+    FOOTER;
 }
 
 void test_2_args_with_2_vars()
@@ -83,7 +83,7 @@ void test_2_args_with_2_vars()
     typedef agregate product_type;
     typedef map<string, string> map_type;
     
-    ctor< product_type, map_type, std::tuple<int, double> > a( make_tuple(0, 0), "index", "radius" );
+    ctor< product_type, map_type > a( std::tuple<int, double>(0, 0), "index", "radius" );
     
     map_type table;
     table["index"] = "8";

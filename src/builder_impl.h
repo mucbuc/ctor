@@ -30,16 +30,19 @@ namespace om636
         typedef V arguments_type;
         
         builder_impl() = default;
+        ~builder_impl() override = default;
+        
 	    builder_impl( arguments_type, array_type );
-	    
+        
+    protected:
 	    product_type build(const map_type & m) const override;
-    private:
     
+    private:
         template<int ... M>
         product_type create(const arguments_type &, ctor_private::seq<M ...>) const;
         
         const arguments_type m_args;
-        array_type m_vars;
+        const array_type m_vars;
     };
 
 	template<class T, class U, class V>
@@ -51,16 +54,19 @@ namespace om636
         typedef std::array< std::string, 0 > array_type;
 	    typedef V arguments_type;
 	    
-	    builder_impl() = default;        
+	    builder_impl() = default;
+        ~builder_impl() override = default;
+        
         builder_impl( arguments_type args, array_type );
         
+    protected:
         product_type build(const map_type & m) const override;
         
     private:
-        
         template<int ... M>
         product_type create(const arguments_type &, ctor_private::seq<M ...>) const;
-	    const arguments_type m_args;
+	
+        const arguments_type m_args;
 	};
 }
 

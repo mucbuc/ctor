@@ -8,17 +8,16 @@
 
 namespace om636
 {
-    template<class T, class U, class V>
+    template<class T, class U >
     struct ctor
     {
         typedef T product_type;
         typedef U map_type;
-        typedef V arguments_type;
 
         ctor();
         
-        template<class ... W>
-        ctor( arguments_type, W ... );
+        template<class V, class ... W>
+        ctor( V, W ... );
         
         product_type build(const map_type &);
     
