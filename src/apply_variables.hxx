@@ -7,6 +7,7 @@ namespace om636
         using namespace std;
         
         typename V::const_iterator pos = map.find( get<N - 1>(vars) );
+
         if (pos != map.end())
         {
             stringstream( pos->second ) >> get< tuple_size<T>::value - tuple_size<U>::value + N - 1 >(args);

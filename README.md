@@ -1,17 +1,25 @@
 # ctor
-builder 
+constructor helper
 
-##
-create/constructor helper
+## objective
+- specify type and value of constructor arguments
+- customize constructor arguments
 
-example
+## quick ref
+- `defaultedWith` specify constructor argument types and values
+- `overridenBy` associate constructor arguments with values at time of construction
+
+## example
 ```
-ctor< product_type, map_type, int, double > a( make_tuple(0, 0), "index", "radius" );
+	using namespace std;
+	using namespace om636;
 
-map_type table;
-table["index"] = "8";
-table["radius"] = "200.3";
+    auto b( ctor< tuple<double>, map_type >
+    	::defaultedWith( double(2.1234) )
+    	.overridenBy("value") 
+    );
+    auto product( b.build( { { "value", "5.4321" } } ) );
 
-product_type c( a.build( table ) );
+	ASSERT( get<0>(product) == 5.4321 );
 ```
 
