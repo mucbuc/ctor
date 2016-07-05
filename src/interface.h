@@ -33,6 +33,8 @@ namespace om636
      
         ctor();
         ctor(const ctor &);
+        ctor & operator=(const ctor &) = delete;
+        ctor & operator=(ctor &&) = delete;
         
         template<class V, class ... W>
         ctor( V, W ... );
