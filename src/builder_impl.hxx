@@ -29,4 +29,11 @@ namespace om636
         return create( args, typename ctor_private::gens< tuple_size<arguments_type>::value >::type() );
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    template<class T, class U, class V, int N >
+    auto builder_impl<T, U, V, N>::clone() const -> base_type *
+    {
+        return new builder_impl( * this );
+    }
+    
 }   // om636

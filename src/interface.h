@@ -32,6 +32,7 @@ namespace om636
         typedef U map_type;
      
         ctor();
+        ctor(const ctor &);
         
         template<class V, class ... W>
         ctor( V, W ... );
