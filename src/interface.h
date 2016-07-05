@@ -36,7 +36,7 @@ namespace om636
         template<class V, class ... W>
         ctor( V, W ... );
         
-        product_type build(const map_type & = map_type{} );
+        product_type build(const map_type & = map_type{} ) const;
 
         template<class ... V>
         static partial_ctor<std::tuple<V ... > > defaultedWith(V ...);

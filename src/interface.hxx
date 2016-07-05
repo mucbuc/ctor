@@ -39,7 +39,7 @@ namespace om636
     
     /////////////////////////////////////////////////////////////////////////////////////////////
     template<class T, class U>
-    auto ctor<T, U>::build(const map_type & m) -> product_type
+    auto ctor<T, U>::build(const map_type & m) const -> product_type
     {
         return m_impl->build(m);
     }
