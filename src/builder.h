@@ -14,6 +14,8 @@ namespace om636
         
         virtual ~builder() = default;
         virtual product_type build(const map_type &) const = 0;
+        virtual builder * clone() const = 0;
+        
     };
 }
 

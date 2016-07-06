@@ -32,11 +32,14 @@ namespace om636
         typedef U map_type;
      
         ctor();
+        ctor(const ctor &);
+        ctor & operator=(const ctor &) = delete;
+        ctor & operator=(ctor &&) = delete;
         
         template<class V, class ... W>
         ctor( V, W ... );
         
-        product_type build(const map_type & = map_type{} );
+        product_type build(const map_type & = map_type{} ) const;
 
         template<class ... V>
         static partial_ctor<std::tuple<V ... > > defaultedWith(V ...);

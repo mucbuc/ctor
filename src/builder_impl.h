@@ -31,8 +31,11 @@ namespace om636
         
         builder_impl() = default;
         ~builder_impl() override = default;
+        builder_impl(const builder_impl &) = default;
         
 	    builder_impl( arguments_type, array_type );
+        
+        base_type * clone() const override;
         
     protected:
 	    product_type build(const map_type & m) const override;
