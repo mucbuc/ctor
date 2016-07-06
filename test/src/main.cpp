@@ -17,16 +17,36 @@
 
 using namespace std;
 
-void test_example()
+void test_example_with_multipe_arguments()
 {
     using namespace std;
     using namespace om636;
 
-    auto b( ctor< tuple<double> >
+    auto builder( ctor< tuple<double, int, string> >
+        ::defaultedWith( double(41.3), int(2), string("who?") )
+        .overridenBy("radius", "index", "name" ) 
+    );
+    
+    auto product( builder.build( 
+        { { "index", "3" }, { "name", "part231" } } 
+    ) );
+
+    ASSERT( get<0>(product) == 41.3 );
+    ASSERT( get<1>(product) == 3 );
+    ASSERT( get<2>(product) == "part231" );
+}
+
+void test_example_with_signgle_argument()
+{
+    using namespace std;
+    using namespace om636;
+
+    auto builder( ctor< tuple<double> >
         ::defaultedWith( double(2.1234) )
         .overridenBy("value") 
     );
-    auto product( b.build( { { "value", "5.4321" } } ) );
+    
+    auto product( builder.build( { { "value", "5.4321" } } ) );
 
     ASSERT( get<0>(product) == 5.4321 );
 }
@@ -150,7 +170,8 @@ int main(int argc, const char * argv[]) {
     default_ctor_test();
     test_ctor_with_variable();
     test_ctor_with_two_variables();
-    test_example();
+    test_example_with_signgle_argument();
+    test_example_with_multipe_arguments();
     
     return 0;
 }
