@@ -1,4 +1,4 @@
-        //
+//
 //  main.cpp
 //  teseter
 //
@@ -16,15 +16,15 @@
 #include "test.h"
 
 using namespace std;
+using namespace om636;
 
 void test_example_with_multipe_arguments()
 {
-    using namespace std;
-    using namespace om636;
-
     auto builder( ctor< tuple<double, int, string> >
         ::defaultedWith( double(41.3), int(2), string("who?") )
-        .overridenBy("radius", "index", "name" ) 
+        .overridenBy( "index", "name" ) 
+        // right hand side arguments are referenced before left hand side arguments. 
+        // "index" <=> int(2), "name" <=> "who?" 
     );
     
     auto product( builder.build( 
@@ -38,14 +38,11 @@ void test_example_with_multipe_arguments()
 
 void test_example_with_signgle_argument()
 {
-    using namespace std;
-    using namespace om636;
-
     auto builder( ctor< tuple<double> >
         ::defaultedWith( double(2.1234) )
         .overridenBy("value") 
     );
-    
+
     auto product( builder.build( { { "value", "5.4321" } } ) );
 
     ASSERT( get<0>(product) == 5.4321 );
@@ -53,8 +50,6 @@ void test_example_with_signgle_argument()
 
 void test_ctor_with_two_variables()
 {
-    using namespace std;
-    using namespace om636;
     typedef map<string, string> map_type;
     
     auto b( ctor< tuple<double, string>, map_type >
@@ -69,8 +64,6 @@ void test_ctor_with_two_variables()
 
 void test_ctor_with_variable()
 {
-    using namespace std;
-    using namespace om636;
     typedef map<string, string> map_type;
     
     auto b( ctor< std::tuple<double>, map_type >
@@ -85,8 +78,6 @@ void test_ctor_with_variable()
 
 void test_default_ctor()
 {
-    using namespace std;
-    using namespace om636;
     typedef map<string, string> map_type;
     
     auto b( ctor< std::tuple<double>, map_type >::defaultedWith( double(2.1234) ) );
@@ -99,9 +90,7 @@ void test_default_ctor()
 
 void default_ctor_test()
 {
-    using namespace std;
-    using namespace om636;
-   
+    
     typedef int product_type;
     typedef map<string, string> map_type;
     
@@ -146,8 +135,6 @@ unsigned agregate::ctor_counter( 0 );
 
 void test_2_args_with_2_vars()
 {
-    using namespace std;
-    using namespace om636;
     typedef agregate product_type;
     typedef map<string, string> map_type;
     
