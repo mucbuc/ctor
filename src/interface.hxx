@@ -24,12 +24,6 @@ namespace om636
     // ctor
     /////////////////////////////////////////////////////////////////////////////////////////////
     template<class T, class U>
-    ctor<T, U>::ctor()
-    : m_impl( new builder_impl< product_type, map_type, std::tuple<>, 0 >() )
-    {}
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    template<class T, class U>
     ctor<T, U>::ctor(const ctor & other)
     : m_impl( other.m_impl ? other.m_impl->clone() : nullptr )
     {}

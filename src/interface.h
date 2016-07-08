@@ -31,20 +31,23 @@ namespace om636
         typedef T product_type;
         typedef U map_type;
      
-        ctor();
         ctor(const ctor &);
+        virtual ~ctor() = default;
+
+        product_type build(const map_type & = map_type{} ) const;
+
+        template<class ... V>
+        static partial_ctor<std::tuple<V ... > > defaultedWith(V ...);
+        
+    private:        
+
+        ctor() = delete;
         ctor & operator=(const ctor &) = delete;
         ctor & operator=(ctor &&) = delete;
         
         template<class V, class ... W>
         ctor( V, W ... );
         
-        product_type build(const map_type & = map_type{} ) const;
-
-        template<class ... V>
-        static partial_ctor<std::tuple<V ... > > defaultedWith(V ...);
-    
-    private:        
         std::unique_ptr< builder<product_type, map_type> > m_impl;
     };
 
