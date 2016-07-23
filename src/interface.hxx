@@ -2,11 +2,11 @@ namespace om636
 {
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-    // ctor<T, U>::partial_ctor<V>
+    // ctor<T, U>::ctor_with_args<V>
     /////////////////////////////////////////////////////////////////////////////////////////////
     template<class T, class U >
     template<class V>
-    ctor<T, U>::partial_ctor<V>::partial_ctor(arguments_type args)
+    ctor<T, U>::ctor_with_args<V>::ctor_with_args(arguments_type args)
     : ctor( args )
     , m_args( args )
     {}
@@ -15,7 +15,7 @@ namespace om636
     template<class T, class U >
     template<class V>
     template<class ... W>
-    ctor<T, U> ctor<T, U>::partial_ctor<V>::overridenBy(W ... vars)
+    ctor<T, U> ctor<T, U>::ctor_with_args<V>::overridenBy(W ... vars)
     {
         return ctor<T, U>( m_args, vars ... );
     }
@@ -47,10 +47,10 @@ namespace om636
     /////////////////////////////////////////////////////////////////////////////////////////////
     template<class T, class U>
     template<class ... V>
-    auto ctor<T, U>::defaultedWith(V ... args) -> partial_ctor<std::tuple<V ... > >
+    auto ctor<T, U>::defaultedWith(V ... args) -> ctor_with_args<std::tuple<V ... > >
     {
         typedef std::tuple<V ... > tuple_type;
-        return partial_ctor<tuple_type >{ tuple_type{ args ... } };
+        return ctor_with_args<tuple_type >{ tuple_type{ args ... } };
     }
 
 }   // om636

@@ -3,9 +3,9 @@
 		"src/apply_variables.h",
 		"src/apply_variables.hxx",
 		"src/builder.h",
-		"src/builder_fwd.h",
 		"src/builder_impl.h",
 		"src/builder_impl.hxx",		
+		"src/ctor_fwd.h",
 		"src/interface.h",
 		"src/interface.hxx"
 	]

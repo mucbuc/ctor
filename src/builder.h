@@ -1,7 +1,7 @@
 #ifndef BUIDER_H_INCLUDE_GUARD_33983289389I8903LKN
 #define BUIDER_H_INCLUDE_GUARD_33983289389I8903LKN
 
-#include <lib/ctor/src/builder_fwd.h>
+#include <lib/ctor/src/ctor_fwd.h>
 
 namespace om636
 {
@@ -14,8 +14,7 @@ namespace om636
         
         virtual ~builder() = default;
         virtual product_type build(const map_type &) const = 0;
-        virtual builder * clone() const = 0;
-        
+        virtual builder * clone() const = 0;  
     };
 }
 
