@@ -1,5 +1,5 @@
 # ctor
-construction helper
+c++ construction helper
 
 ## objective
 - specify type and value of constructor arguments
