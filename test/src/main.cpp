@@ -99,30 +99,30 @@ void default_ctor_test()
 
     FOOTER;
 }
-struct agregate
+struct aggregate
 {
-    agregate(int first, double second)
+    aggregate(int first, double second)
     : m_first( first )
     , m_second( second )
     {
         ++ctor_counter;
     }
     
-    agregate(const agregate & c)
+    aggregate(const aggregate & c)
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
         ++ctor_counter;
     }
     
-    agregate(agregate && c)
+    aggregate(aggregate && c)
     : m_first( c.m_first )
     , m_second( c.m_second )
     {
         ++ctor_counter;
     }
     
-    ~agregate()
+    ~aggregate()
     {}
     
     int m_first;
@@ -131,22 +131,22 @@ struct agregate
     static unsigned ctor_counter;
 };
 
-unsigned agregate::ctor_counter( 0 );
+unsigned aggregate::ctor_counter( 0 );
 
 void test_2_args_with_2_vars()
 {
-    typedef agregate product_type;
+    typedef aggregate product_type;
     typedef map<string, string> map_type;
     
     auto a( ctor< product_type, map_type >
            ::defaultedWith( int(0), double(0) )
            .overridenBy( "index", "radius" ) );
     
-    agregate c( a.build( { { "index", "8" }, { "radius", "200.3" } } ) );
+    aggregate c( a.build( { { "index", "8" }, { "radius", "200.3" } } ) );
 
     ASSERT( c.m_first == 8 )(c.m_first);
     ASSERT( c.m_second && c.m_second == 200.3 )( c.m_second );
-    ASSERT( agregate::ctor_counter == 1 );
+    ASSERT( aggregate::ctor_counter == 1 );
     FOOTER;
 }
 
