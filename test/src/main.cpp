@@ -13,7 +13,7 @@
 
 #include <lib/ctor/src/interface.h>
 
-#include "test.h"
+#include <tmp/src/test.h>
 
 using namespace std;
 using namespace om636;
