@@ -1,6 +1,8 @@
 # ctor
 c++ construction helper
 
+![doc header](https://s3-us-west-2.amazonaws.com/mod-resources/mod-header.svg)
+
 ## objective
 - specify type and value of constructor arguments
 - provide dynamic way to customize these arguments
